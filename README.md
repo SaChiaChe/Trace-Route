@@ -37,10 +37,9 @@ if you know the reason, please notice me, I will be very thankful :)
 
 
 3. A problem that I still don't know why it occurs:
-When sending the packet immediately after receiving it, somehow I 
-can't receive the packets normally, and the time becomes very weird. 
-I added a time.sleep(0.1) to prevent from sending too fast, and it 
-works fine now.
+Sometimes when sending the packet immediately after receiving it, somehow I
+can't receive the packets normally, and the time becomes very weird.
+If the problem occurs, just add a time.sleep() between every packet sent.
 
 ## Built With
 
