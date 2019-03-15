@@ -118,20 +118,25 @@ if __name__ == "__main__":
 					# print("Waiting for packet")
 					RecvPacket, addr = ICMPSocket.recvfrom(1024)
 					RecvTime = time.time()
+					
 					RecvICMPHeder = RecvPacket[20:28]
 					Reply_Type, Reply_Code, Reply_Checksum, Reply_Other = struct.unpack("!BBHI", RecvICMPHeder)
 					# print(Reply_Type)
+
 					# Check if arrived
 					if CheckArrived(Reply_Type):
 						ReplyTime.append(str(round((RecvTime - SendTime) * 1000, 3)))
 						Arrived = True
 						break
+
 					RecvOriginICMPHeader = RecvPacket[48:56]
 					Origin_Type, Origin_Code, Origin_Checksum, Origin_ID, Origin_SeqNum = struct.unpack("!BBHHh", RecvOriginICMPHeader)
 					# print(Origin_Type, Origin_Code, Origin_Checksum, Origin_ID, Origin_SeqNum)
+					
 					# Check everthing
 					if not CheckPacket(Origin_ID, Origin_SeqNum, IDENTIFIER, SeqNum, Reply_Type):
 						continue
+					
 					# The packet is correct!!!
 					else:
 						# print("Receive time", RecvTime)
