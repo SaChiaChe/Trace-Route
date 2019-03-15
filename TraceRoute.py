@@ -50,20 +50,20 @@ def MakeHeader(Type, Code, Identifier, SeqNum):
 def CheckPacket(Origin_ID, Origin_SeqNum, IDENTIFIER, SeqNum, Reply_Type):
 	# Check Reply ID
 	if Origin_ID != IDENTIFIER:
-		print("Incorrect identifier")
-		print("Received identifier:", Origin_ID)
+		# print("Incorrect identifier")
+		# print("Received identifier:", Origin_ID)
 		return False
 
 	# Check Reply SeqNum
 	if Origin_SeqNum != SeqNum:
-		print("Incorrect sequence number")
-		print("Received sequence number:", Origin_SeqNum)
+		# print("Incorrect sequence number")
+		# print("Received sequence number:", Origin_SeqNum)
 		return False
 
 	# Check Reply Type
 	if Reply_Type != ICMP_TIME_EXCEEDED:
-		print("Not ICMP_TIME_EXCEEDED")
-		print("Received reply type:", Reply_Type)
+		# print("Not ICMP_TIME_EXCEEDED")
+		# print("Received reply type:", Reply_Type)
 		return False
 
 	return True
@@ -79,7 +79,8 @@ if __name__ == "__main__":
 		exit(0)
 
 	DestinationHost = sys.argv[1]
-	print("Destination:", DestinationHost)
+	DestinationIP = socket.gethostbyname(sys.argv[1])
+	print("traceroute to %s (%s), %d hops max" % (DestinationHost, DestinationIP, MAX_HOPS))
 
 	# Create socket
 	ICMPSocket = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_ICMP)
