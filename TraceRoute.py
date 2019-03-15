@@ -5,10 +5,9 @@ Problems:
 		It blocks the ICMP replys that we need, remenber to shut it
 		down before running the program.
 	2.	A problem that I still don't know why it occurs:
-		When sending the packet immediately after receiving it, somehow I
+		Sometimes when sending the packet immediately after receiving it, somehow I
 		can't receive the packets normally, and the time becomes very weird.
-		I added a time.sleep(0.1) to prevent from sending too fast, and it 
-		works fine now.
+		If the problem occurs, just add a time.sleep() between every packet sent.
 '''		
 
 import socket
@@ -150,9 +149,8 @@ if __name__ == "__main__":
 
 			# End of one try
 			Tries += 1
-			# Sending too fast will cause packet drop(for whatever unknown reason)
-			# Also the 
-			time.sleep(SLEEPTIME)
+			# Sometimes sending too fast will cause packet drop(for whatever unknown reason)
+			# time.sleep(SLEEPTIME)
 
 		# All Tries ended
 		if addr != "":
